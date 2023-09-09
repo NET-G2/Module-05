@@ -6,25 +6,29 @@ namespace Supermarket
     {
         static void Main(string[] args)
         {
-            ProductService db = new ProductService();
+            ProductDbService db = new ProductDbService();
 
             db.ReadAllProducts();
             Console.WriteLine();
 
-            db.CreateProduct("CocaCola", 25000);
-            Console.WriteLine();
+            db.GetProductById(1);
 
-            db.ReadAllProducts();
-            Console.WriteLine();
+            db.GetProductsByCategoryId(1);
 
-            db.UpdateProduct(1, "Water", 50000);
-            Console.WriteLine();
+            //db.CreateProduct("CocaCola", 25000);
+            //Console.WriteLine();
 
-            db.ReadAllProducts();
-            Console.WriteLine();
+            //db.ReadAllProducts();
+            //Console.WriteLine();
 
-            db.DeleteProduct(6);
-            db.ReadAllProducts();
+            //db.UpdateProduct(1, "Water", 50000);
+            //Console.WriteLine();
+
+            //db.ReadAllProducts();
+            //Console.WriteLine();
+
+            //db.DeleteProduct(6);
+            //db.ReadAllProducts();
 
             Console.ReadKey();
         }

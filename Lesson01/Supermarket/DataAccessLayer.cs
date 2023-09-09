@@ -3,7 +3,7 @@ using System;
 
 namespace Supermarket
 {
-    internal class DAL
+    internal static class DataAccessLayer
     {
         public const string Connection_String = "Data Source=EPUZTASW0537\\SQLEXPRESS;Initial Catalog=Supermarket;Integrated Security=True";
 
@@ -14,7 +14,6 @@ namespace Supermarket
             try
             {
                 connection.Open();
-                Console.WriteLine("Connection was successfull.");
 
                 SqlCommand sqlCommand = new SqlCommand(command, connection);
 
@@ -33,7 +32,6 @@ namespace Supermarket
             finally
             {
                 connection.Close();
-                Console.WriteLine("Connection closed.");
             }
         }
     }
