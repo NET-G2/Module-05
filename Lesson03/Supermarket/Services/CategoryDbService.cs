@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Supermarket.Models;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace Supermarket
@@ -50,8 +52,9 @@ namespace Supermarket
             ExecuteQuery(query);
         }
 
-        private static void ExecuteQuery(string query)
+        private static List<Category> ExecuteQuery(string query)
         {
+            List<Category> categories = new List<Category>();
             try
             {
                 using (SqlConnection connection = new SqlConnection(DataAccessLayer.Connection_String))
@@ -59,7 +62,7 @@ namespace Supermarket
                     connection.Open();
 
                     SqlCommand command = new SqlCommand(query, connection);
-                    ReadCategoryFromDataReader(command.ExecuteReader());
+                    categories = ReadCategoryFromDataReader(command.ExecuteReader());
                 }
             }
             catch (SqlException ex)
@@ -70,19 +73,22 @@ namespace Supermarket
             {
                 Console.WriteLine($"Something went wrong while reading products. {ex.Message}.");
             }
+
+            return categories;
         }
 
-        private static void ReadCategoryFromDataReader(SqlDataReader reader)
+        private static List<Category> ReadCategoryFromDataReader(SqlDataReader reader)
         {
+            List<Category> categories = new List<Category>();
             if (reader == null)
             {
-                return;
+                return categories;
             }
 
             if (!reader.HasRows)
             {
                 Console.WriteLine("No data.");
-                return;
+                return categories;
             }
 
             Console.WriteLine("{0}\t{1}\t{2}",
@@ -92,13 +98,17 @@ namespace Supermarket
 
             while (reader.Read())
             {
-                object id = reader.GetValue(0);
-                object name = reader.GetValue(1);
-                object numberOfProducts = reader.GetValue(2);
+                int id = reader.GetInt32(0);
+                string name = reader.GetString(1);
+                int numberOfProducts = reader.GetInt32(2);
+
+                categories.Add(new Category(id, name, numberOfProducts));
 
                 Console.WriteLine("{0} \t{1} \t{2}", id, name, numberOfProducts);
             }
             reader.Close();
+
+            return categories;
         }
     }
 }
