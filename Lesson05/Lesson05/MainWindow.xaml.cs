@@ -31,12 +31,37 @@ namespace Lesson05
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Zikirillo qalesiz?");
+            employees = Services.EmployeeService.MinSalInfirm();
+
+            empDataGrid.ItemsSource = employees;
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Axrorbek qalesiz?");
+            employees = Services.EmployeeService.WorkAsFord();
+
+            empDataGrid.ItemsSource = employees;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            employees = Services.EmployeeService.MinSalWorkAsClerk();
+
+            empDataGrid.ItemsSource = employees;
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            employees = Services.EmployeeService.MaxSalWorkAsClerk();
+
+            empDataGrid.ItemsSource = employees;
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            employees = Services.EmployeeService.AverageSalaryInEachJob();
+
+            empDataGrid.ItemsSource = employees;
         }
     }
 }
