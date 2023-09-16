@@ -1,9 +1,9 @@
-﻿using Lesson05.Extensions;
+﻿using Lesson04.Extensions;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Lesson05.DAL
+namespace Lesson04.DAL
 {
     internal static class DataAccessLayer
     {

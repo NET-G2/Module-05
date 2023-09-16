@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lesson05.Modules
+namespace Lesson04.Models
 {
-    internal class MainApplication
+    internal class Expense
     {
     }
 }

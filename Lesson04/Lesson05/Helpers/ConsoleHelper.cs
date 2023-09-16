@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lesson05.Extensions
+namespace Lesson04.Extensions
 {
     internal static class ConsoleHelper
     {

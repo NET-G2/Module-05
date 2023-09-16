@@ -1,10 +1,10 @@
-﻿using Lesson05.Models;
+﻿using Lesson04.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Lesson05.DAL
+namespace Lesson04.DAL
 {
     internal class CategoryService
     {

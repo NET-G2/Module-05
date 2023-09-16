@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lesson05.Modules
+namespace Lesson04.Modules
 {
-    internal class IncomeModule
+    internal class MainApplication
     {
     }
 }
