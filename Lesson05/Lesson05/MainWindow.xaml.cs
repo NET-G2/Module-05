@@ -26,5 +26,11 @@ namespace Lesson05
         {
             MessageBox.Show("Button 2 clicked");
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(" Italiyani gandoni!");
+        }
+
     }
 }
