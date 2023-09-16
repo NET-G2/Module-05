@@ -7,7 +7,8 @@ namespace Lesson05.DAL
 {
     internal static class DataAccessLayer
     {
-        public const string Connection_String = "Data Source=EPUZTASW0537\\SQLEXPRESS;Initial Catalog=ExpenseManager;Integrated Security=True";
+        public const string Connection_String =
+            "Data Source=HP-PAVILION-550;Initial Catalog=Monitoring;Integrated Security=True";
 
         public static async Task ExecuteNonQueryAsync(string command)
         {

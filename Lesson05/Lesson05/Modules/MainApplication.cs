@@ -8,5 +8,6 @@ namespace Lesson05.Modules
 {
     internal class MainApplication
     {
+
     }
 }
