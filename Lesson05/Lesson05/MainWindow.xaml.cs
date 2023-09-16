@@ -24,7 +24,19 @@ namespace Lesson05
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 2 clicked");
+            employees = Services.EmployeeService.GetEmployeeByEmpno(7369);
+
+            empDataGrid.ItemsSource = employees;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Zikirillo qalesiz?");
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Axrorbek qalesiz?");
         }
     }
 }
