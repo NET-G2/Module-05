@@ -23,7 +23,7 @@
                    VerticalAlignment="Top"
                    FontSize="20"
                    FontWeight="Black"
-                   Foreground="Black"
+                   Foreground="White"
                    Text="Lesson 5" />
 
         <StackPanel Grid.Row="1"
@@ -42,7 +42,7 @@
                     Click="Button_Click_1"
                     Content="Query 2" />
             <Button Width="75"
-                    Height="50"
+                    Height="50" Click ="Button_Click_2"
                     Margin="10"
                     Background="White"
                     Content="Query 3" />
