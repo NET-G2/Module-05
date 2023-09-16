@@ -23,6 +23,13 @@ namespace Lesson05.Services
             return DataAccessLayer.ExecuteQuery(command, ReaderToEmployeeList);
         }
 
+        public static List<Employee> GetEmployee()
+        {
+            var command = "SELECT * FROM dbo.Emp where id = 1;";
+
+            return DataAccessLayer.ExecuteQuery(command, ReaderToEmployeeList);
+        }
+
         private static List<Employee> ReaderToEmployeeList(SqlDataReader reader)
         {
             if (reader is null)

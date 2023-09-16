@@ -7,7 +7,7 @@ namespace Lesson05.DAL
 {
     internal class DataAccessLayer
     {
-        public const string Connection_String = "Data Source=EPUZTASW0537\\SQLEXPRESS;Initial Catalog=Company;Integrated Security=True";
+        public const string Connection_String = "Data Source=AXRORBEK\\SQLEXPRESS;Initial Catalog=Company;Integrated Security=True";
 
         public static async Task ExecuteNonQueryAsync(string command)
         {

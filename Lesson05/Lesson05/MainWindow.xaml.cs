@@ -24,7 +24,9 @@ namespace Lesson05
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Button 2 clicked now");
+            employees = Services.EmployeeService.GetEmployee();
+
+            empDataGrid.ItemsSource = employees;
         }
     }
 }
