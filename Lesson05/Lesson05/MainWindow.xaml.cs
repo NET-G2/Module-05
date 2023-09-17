@@ -28,5 +28,31 @@ namespace Lesson05
 
             empDataGrid.ItemsSource = employees;
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            employees = Services.EmployeeService.GetMinSalEmp();
+
+            empDataGrid.ItemsSource = employees;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            employees = Services.EmployeeService.GetMinSalClerc();
+
+            empDataGrid.ItemsSource = employees;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            employees = Services.EmployeeService.GetAvgSal();
+
+            empDataGrid.ItemsSource = employees;
+        }
+
+
+
+
+
     }
 }

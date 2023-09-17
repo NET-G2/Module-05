@@ -45,16 +45,19 @@
                     Height="50"
                     Margin="10"
                     Background="White"
+                    Click="Button_Click_2"
                     Content="Query 3" />
             <Button Width="75"
                     Height="50"
                     Margin="10"
                     Background="White"
+                    Click="Button_Click_3"
                     Content="Query 4" />
             <Button Width="75"
                     Height="50"
                     Margin="10"
                     Background="White"
+                    Click="Button_Click_4"
                     Content="Query 5" />
             <Button Width="75"
                     Height="50"
@@ -140,33 +143,8 @@
 
         <DataGrid x:Name="empDataGrid"
                   Grid.Row="4"
-                  AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="50"
-                                    Binding="{Binding Empno}"
-                                    Header="Id" />
-                <DataGridTextColumn Width="100"
-                                    Binding="{Binding Ename}"
-                                    Header="First name" />
-                <DataGridTextColumn Width="100"
-                                    Binding="{Binding Job}"
-                                    Header="Job" />
-                <DataGridTextColumn Width="100"
-                                    Binding="{Binding Mgr}"
-                                    Header="Manager" />
-                <DataGridTextColumn Width="150"
-                                    Binding="{Binding Hiredate}"
-                                    Header="Hiredate" />
-                <DataGridTextColumn Width="100"
-                                    Binding="{Binding Sal}"
-                                    Header="Salary" />
-                <DataGridTextColumn Width="100"
-                                    Binding="{Binding Comm}"
-                                    Header="Commision" />
-                <DataGridTextColumn Width="100"
-                                    Binding="{Binding Deptno}"
-                                    Header="Department" />
-            </DataGrid.Columns>
+                  AutoGenerateColumns="True">
+
         </DataGrid>
     </Grid>
 </Window>

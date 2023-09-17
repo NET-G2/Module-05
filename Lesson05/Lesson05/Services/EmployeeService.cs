@@ -25,10 +25,37 @@ namespace Lesson05.Services
 
         public static List<Employee> GetEmployee()
         {
-            var command = "SELECT * FROM dbo.Emp where id = 1;";
+            var command = "SELECT * FROM dbo.Emp " +
+                "where empno = 7782;";
 
             return DataAccessLayer.ExecuteQuery(command, ReaderToEmployeeList);
         }
+
+        public static List<Employee> GetMinSalEmp()
+        {
+            var command = "SELECT * FROM dbo.Emp " +
+                "where sal = (select min(sal) from emp );";
+
+            return DataAccessLayer.ExecuteQuery(command, ReaderToEmployeeList);
+        }
+
+        public static List<Employee> GetMinSalClerc()
+        {
+            var command = "select * from emp " +
+                "where job = 'CLERK' and sal = (select min(sal) from emp where job = 'clerk' ) ";
+
+            return DataAccessLayer.ExecuteQuery(command, ReaderToEmployeeList);
+        }
+
+        public static List<Employee> GetAvgSal()
+        {
+            var command = "select job , avg(sal) as avgSal from emp " +
+                "group by job ";
+
+            return DataAccessLayer.ExecuteQuery(command, ReaderToEmployeeList);
+        }
+
+
 
         private static List<Employee> ReaderToEmployeeList(SqlDataReader reader)
         {
@@ -40,27 +67,42 @@ namespace Lesson05.Services
 
             List<Employee> result = new List<Employee>();
 
+
             if (reader.HasRows)
             {
+
                 while (reader.Read())
                 {
-                    Employee category = new Employee
+                    if (reader.FieldCount == 8)
                     {
-                        Empno = reader.GetInt32(0),
-                        Ename = reader.GetString(1),
-                        Job = reader.GetString(2),
-                        Mgr = reader.IsDBNull(3) ? null : reader.GetInt32(3),
-                        Hiredate = reader.GetDateTime(4),
-                        Sal = reader.GetDecimal(5),
-                        Comm = reader.IsDBNull(6) ? null : reader.GetDecimal(6),
-                        Deptno = reader.GetInt32(7)
-                    };
+                        Employee category = new Employee()
+                        {
 
-                    result.Add(category);
+                            Empno = reader.IsDBNull(0) ? null : reader.GetInt32(0),
+                            Ename = reader.IsDBNull(1) ? null : reader.GetString(1),
+                            Job = reader.IsDBNull(2) ? null : reader.GetString(2),
+                            Mgr = reader.IsDBNull(3) ? null : reader.GetInt32(3),
+                            Hiredate = reader.IsDBNull(4) ? null : reader.GetDateTime(4),
+                            Sal = reader.IsDBNull(5) ? null : reader.GetDecimal(5),
+                            Comm = reader.IsDBNull(6) ? null : reader.GetDecimal(6),
+                            Deptno = reader.IsDBNull(7) ? null : reader.GetInt32(7)
+                        };
+                        result.Add(category);
+                    }else if (reader.FieldCount == 2)
+                    {
+                        Employee category = new Employee()
+                        {
+                            Job = reader.IsDBNull(0) ? null : reader.GetString(0),
+                            Sal = reader.IsDBNull(1) ? null : reader.GetDecimal(1),
+                        };
+                        result.Add(category);
+                    }
                 }
-            }
 
-            return result;
+
+            }return result;
         }
+
+            
     }
-}
+}   
