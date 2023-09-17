@@ -41,60 +41,34 @@ namespace Lesson05.DAL
         {
             ThrowIfNullOrEmpty(command);
 
-            try
+            using (SqlConnection connection = new SqlConnection(Connection_String))
             {
-                using (SqlConnection connection = new SqlConnection(Connection_String))
+                await connection.OpenAsync();
+
+                using (SqlCommand sqlCommand = new SqlCommand(command, connection))
                 {
-                    await connection.OpenAsync();
+                    var dataReader = await sqlCommand.ExecuteReaderAsync();
 
-                    using (SqlCommand sqlCommand = new SqlCommand(command, connection))
-                    {
-                        var dataReader = await sqlCommand.ExecuteReaderAsync();
-
-                        return converter(dataReader);
-                    }
+                    return converter(dataReader);
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show($"Database error: {ex.Message}.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Something went wrong: {ex.Message}.");
-            }
-
-            return default;
         }
 
         public static T ExecuteQuery<T>(string command, Func<SqlDataReader, T> converter)
         {
             ThrowIfNullOrEmpty(command);
 
-            try
+            using (SqlConnection connection = new SqlConnection(Connection_String))
             {
-                using (SqlConnection connection = new SqlConnection(Connection_String))
+                connection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand(command, connection))
                 {
-                    connection.Open();
+                    var dataReader = sqlCommand.ExecuteReader();
 
-                    using (SqlCommand sqlCommand = new SqlCommand(command, connection))
-                    {
-                        var dataReader = sqlCommand.ExecuteReader();
-
-                        return converter(dataReader);
-                    }
+                    return converter(dataReader);
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show($"Database error: {ex.Message}.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Something went wrong: {ex.Message}.");
-            }
-
-            return default;
         }
 
         private static void ThrowIfNullOrEmpty(string str)
