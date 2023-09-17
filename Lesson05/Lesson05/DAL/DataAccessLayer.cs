@@ -7,7 +7,7 @@ namespace Lesson05.DAL
 {
     internal class DataAccessLayer : IDisposable
     {
-        public const string Connection_String = "Data Source=EPUZTASW0537\\SQLEXPRESS;Initial Catalog=Company;Integrated Security=True";
+        public const string Connection_String = "Data Source=DESKTOP-B7KIDHK\\SQLEXPRESS02;Initial Catalog=Company;Integrated Security=True";
 
         private readonly SqlConnection _connection;
 
