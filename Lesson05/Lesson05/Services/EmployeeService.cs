@@ -1,29 +1,60 @@
 ﻿using Lesson05.DAL;
 using Lesson05.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Lesson05.Services
 {
-    internal static class EmployeeService
+    internal class EmployeeService
     {
-        public static async Task<List<Employee>> GetAllEmployeesAsync()
+        private readonly DataAccessLayer _database;
+
+        public EmployeeService()
+        {
+            _database = new DataAccessLayer();
+        }
+
+        public List<Employee> GetAllEmployees()
         {
             var command = "SELECT * FROM dbo.Emp;";
 
-            return await DataAccessLayer.ExecuteQueryAsync(command, ReaderToEmployeeList);
+            TryExecuteQuery(command, out List<Employee> result);
+
+            return result;
         }
 
-        public static List<Employee> GetAllEmployees()
+        public List<Employee> GetAllEmployeesFromDepartment20()
         {
-            var command = "SELECT * FROM dbo.Emp;";
+            var command = "SELECT * FROM dbo.Emp WHERE Deptno = 20;";
 
-            return DataAccessLayer.ExecuteQuery(command, ReaderToEmployeeList);
+            TryExecuteQuery(command, out List<Employee> result);
+
+            return result;
         }
 
-        private static List<Employee> ReaderToEmployeeList(SqlDataReader reader)
+        private void TryExecuteQuery(string command, out List<Employee> result)
+        {
+            try
+            {
+                result = _database.ExecuteQuery(command, ReaderToEmployeeList);
+
+                return;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Database error: {ex.Message}.", "Error executing query.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}.", "Something went wrong.", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            result = new List<Employee>();
+        }
+
+        private List<Employee> ReaderToEmployeeList(SqlDataReader reader)
         {
             if (reader is null)
             {

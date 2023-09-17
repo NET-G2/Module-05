@@ -2,7 +2,7 @@
 
 namespace Lesson05.Models
 {
-    internal class Employee
+    public class Employee
     {
         public int Empno { get; set; }
         public string Ename { get; set; }

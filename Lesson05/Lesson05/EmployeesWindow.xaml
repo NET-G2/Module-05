@@ -1,0 +1,43 @@
+﻿<Window x:Class="Lesson05.EmployeesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Lesson05"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="EmployeesWindow"
+        Width="800"
+        Height="450"
+        mc:Ignorable="d">
+    <Grid>
+        <DataGrid x:Name="empDataGrid"
+                  Grid.Row="4"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="50"
+                                    Binding="{Binding Empno}"
+                                    Header="Id" />
+                <DataGridTextColumn Width="100"
+                                    Binding="{Binding Ename}"
+                                    Header="First name" />
+                <DataGridTextColumn Width="100"
+                                    Binding="{Binding Job}"
+                                    Header="Job" />
+                <DataGridTextColumn Width="100"
+                                    Binding="{Binding Mgr}"
+                                    Header="Manager" />
+                <DataGridTextColumn Width="150"
+                                    Binding="{Binding Hiredate}"
+                                    Header="Hiredate" />
+                <DataGridTextColumn Width="100"
+                                    Binding="{Binding Sal}"
+                                    Header="Salary" />
+                <DataGridTextColumn Width="100"
+                                    Binding="{Binding Comm}"
+                                    Header="Commision" />
+                <DataGridTextColumn Width="100"
+                                    Binding="{Binding Deptno}"
+                                    Header="Department" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
