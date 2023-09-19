@@ -50,9 +50,5 @@ namespace Lesson05
             empDataGrid.ItemsSource = employees;
         }
 
-
-
-
-
     }
 }
