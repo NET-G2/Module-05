@@ -1,11 +1,23 @@
-﻿using System.Collections;
-
-namespace Lesson06
+﻿namespace Lesson06
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            List<string> strings = new List<string>();
+            strings.Add("one");
+            strings.Add("two");
+            strings.Add("three");
+            strings.Add("four");
+            strings.Add("   ");
+            strings.Add("five");
+
+            List<int> numbers = new List<int>();
+            numbers.Add(1);
+            numbers.Add(2);
+            numbers.Add(3);
+            numbers.Add(4);
+            numbers.Add(5);
 
             #region Extenion methods Sampels
 
@@ -27,62 +39,96 @@ namespace Lesson06
 
             #endregion
 
-            List<string> strings = new List<string>();
-            strings.Add("one");
-            strings.Add("two");
-            strings.Add("three");
-            strings.Add("four");
-            strings.Add("five");
-
-            List<int> numbers = new List<int>();
-            numbers.Add(1);
-            numbers.Add(2);
-            numbers.Add(3);
-            numbers.Add(4);
-            numbers.Add(5);
-
             #region Anonymous methods
 
-            var printHello = () => Console.WriteLine();
-            printHello();
+            //var printHello = () => Console.WriteLine();
+            //printHello();
 
-            var printMessage = (string message) => Console.WriteLine(message);
-            printMessage("Hello, World!");
+            //var printMessage = (string message) => Console.WriteLine(message);
+            //printMessage("Hello, World!");
 
-            var getSum = (int a, int b) => (a + b).ToString();
-            printMessage(getSum(1, 2));
+            //var getSum = (int a, int b) => (a + b).ToString();
+            //printMessage(getSum(1, 2));
 
-            var calculateTotal = (int[] array) =>
-            {
-                int sum = 0;
-                foreach (var item in array)
-                {
-                    Console.Write(item + " + ");
-                    sum += item;
-                }
+            //var calculateTotal = (int[] array) =>
+            //{
+            //    int sum = 0;
+            //    foreach (var item in array)
+            //    {
+            //        Console.Write(item + " + ");
+            //        sum += item;
+            //    }
 
-                Console.WriteLine();
+            //    Console.WriteLine();
 
-                return sum;
-            };
-            printMessage(calculateTotal(new int[] { 1, 2, 3, 4, 5 }).ToString());
+            //    return sum;
+            //};
+            //printMessage(calculateTotal(new int[] { 1, 2, 3, 4, 5 }).ToString());
 
             #endregion
 
             #region Contains
 
-            Console.WriteLine(strings.Contains("one"));
-            Console.WriteLine(numbers.Contains(6));
+            //Console.WriteLine(strings.Contains("one"));
+            //Console.WriteLine(numbers.Contains(6));
 
             #endregion
 
-            #region Any
+            #region Homework
 
-            var containsLetterA = (string item) =>
+            CustomStringList stringList = new CustomStringList(strings);
+
+            var getFirstLetterValue = (string item) =>
             {
-                foreach (var letter in item)
+                if (item.Trim().Length > 0)
                 {
-                    if (letter == 'a')
+                    decimal value = item.Trim()[0];
+                    return value;
+                }
+
+                return 0;
+            };
+
+            var firstLettersSum = stringList.Sum(getFirstLetterValue);
+            var vowelsAndConsonantsDifference = stringList.Sum(CalculateDifferenceBetweenVowelAndConsonants);
+            var totalSum = stringList.Sum((string item) =>
+            {
+                decimal currentSum = 0;
+                foreach (char ch in item)
+                {
+                    currentSum += ch;
+                }
+
+                return currentSum;
+            });
+
+            var countLetters = (string item) => (double)item.Length;
+
+            var averageLettersCount = stringList.Average(countLetters);
+            var averageVowels = stringList.Average(CalculateAverageVowels);
+
+            Console.WriteLine(averageLettersCount);
+            Console.WriteLine(averageVowels);
+
+            var displayNonEmptyString = (string item) =>
+            {
+                if (item.Trim().Length > 0)
+                {
+                    Console.WriteLine(item);
+                }
+            };
+
+            stringList.Foreach(DisplayAllUppercase);
+            stringList.Foreach(displayNonEmptyString);
+
+            var countStringWithMoreThanThreeLetters = stringList.Count(HasMoreTanThreeLetters);
+            var countStringEndingWithVowels = (string item) =>
+            {
+                if (item.Trim().Length > 0)
+                {
+                    char lastChar = item.Trim()[item.Trim().Length - 1];
+                    if (lastChar == 'a' || lastChar == 'e' || lastChar == 'i' ||
+                        lastChar == 'o' || lastChar == 'u' || lastChar == 'y')
                     {
                         return true;
                     }
@@ -91,163 +137,57 @@ namespace Lesson06
                 return false;
             };
 
-            var isOne = (string item) => item == "one";
-
-            Console.WriteLine(strings.Any(isOne));
-            Console.WriteLine();
-            Console.WriteLine(strings.Sum(item =>
-            {
-                decimal currentSum = 0;
-                foreach (char ch in item)
-                {
-                    currentSum += ch;
-                }
-
-                Console.WriteLine(currentSum);
-
-                return currentSum;
-            }));
-
-            Console.WriteLine(strings.Sum(item =>
-            {
-                int totalSum = 0;
-                if (item == "one")
-                {
-                    totalSum += 1;
-                }
-                else if (item == "two")
-                {
-                    totalSum += 2;
-                }
-                else if (item == "three")
-                {
-                    totalSum += 3;
-                }
-                else if (item == "four")
-                {
-                    totalSum += 4;
-                }
-                else if (item == "five")
-                {
-                    totalSum += 5;
-                }
-
-                return totalSum;
-            }));
-
-            CustomStringList stringList = new CustomStringList(strings);
-            Console.WriteLine($"Custom string method: {stringList.Sum()}");
-
-            var hasMoreVowels = (string item) =>
-            {
-                int vowelsCount = 0;
-                int consolantsCount = 0;
-
-                foreach (var ch in item)
-                {
-                    if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
-                    {
-                        vowelsCount++;
-                    }
-                    else
-                    {
-                        consolantsCount++;
-                    }
-                }
-
-                return vowelsCount > consolantsCount;
-            };
-
-            Console.WriteLine(stringList.Any(hasMoreVowels));
+            Console.WriteLine(countStringWithMoreThanThreeLetters);
+            // Console.WriteLine(stringList.Count(countStringEndingWithVowels));
 
             #endregion
         }
-    }
 
-    class CustomList : IEnumerable
-    {
-        private readonly CustomEnumerator _enumerator;
-
-        public CustomList(string[] items)
+        static decimal CalculateDifferenceBetweenVowelAndConsonants(string str)
         {
-            _enumerator = new CustomEnumerator(items);
-        }
+            decimal vowelsSum = 0;
+            decimal consonantsSum = 0;
 
-        public IEnumerator GetEnumerator()
-        {
-            return _enumerator;
-        }
-    }
-
-    class CustomEnumerator : IEnumerator
-    {
-        private readonly string[] _items;
-        private readonly int _count;
-        private int _currentIndex;
-
-        public CustomEnumerator(string[] items)
-        {
-            _items = items;
-            _count = items.Length;
-            _currentIndex = -1;
-        }
-
-        public object Current => _items[_currentIndex];
-
-        public bool MoveNext()
-        {
-            if (_currentIndex < _count - 1)
+            foreach (char ch in str)
             {
-                _currentIndex++;
-                return true;
-            }
-
-            return false;
-        }
-
-        public void Reset()
-        {
-            _currentIndex = 0;
-        }
-    }
-
-    class CustomStringList
-    {
-        private readonly List<string> strings;
-
-        public CustomStringList(List<string> strings)
-        {
-            this.strings = strings;
-        }
-
-        public decimal Sum(Func<string, decimal> func)
-        {
-            decimal totalSum = 0;
-
-            foreach (var item in strings)
-            {
-                totalSum += func(item);
-            }
-
-            return totalSum;
-        }
-
-        public decimal Sum()
-        {
-            decimal totalSum = 0;
-
-            foreach (var item in strings)
-            {
-                int currentSum = 0;
-                foreach (var ch in item)
+                if (ch == 'a' || ch == 'e' || ch == 'i' ||
+                                       ch == 'o' || ch == 'u' || ch == 'y')
                 {
-                    currentSum += ch;
+                    vowelsSum += ch;
                 }
-
-                totalSum += currentSum;
+                else
+                {
+                    consonantsSum += ch;
+                }
             }
 
-            return totalSum;
+            return Math.Abs(vowelsSum - consonantsSum);
+        }
+
+        static double CalculateAverageVowels(string str)
+        {
+            double totalNumberOfVowels = 0;
+
+            foreach (char ch in str)
+            {
+                if (ch == 'a' || ch == 'e' || ch == 'i' ||
+                                       ch == 'o' || ch == 'u' || ch == 'y')
+                {
+                    totalNumberOfVowels += 1;
+                }
+            }
+
+            return totalNumberOfVowels / str.Length;
+        }
+
+        static void DisplayAllUppercase(string str)
+        {
+            Console.WriteLine(str.ToUpper());
+        }
+
+        static bool HasMoreTanThreeLetters(string str)
+        {
+            return str.Length > 3;
         }
     }
 }
