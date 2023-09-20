@@ -76,68 +76,68 @@
 
             #region Homework
 
-            CustomStringList stringList = new CustomStringList(strings);
+            //GenericList<string> stringList = new GenericList<string>(strings);
 
-            var getFirstLetterValue = (string item) =>
-            {
-                if (item.Trim().Length > 0)
-                {
-                    decimal value = item.Trim()[0];
-                    return value;
-                }
+            //var getFirstLetterValue = (string item) =>
+            //{
+            //    if (item.Trim().Length > 0)
+            //    {
+            //        decimal value = item.Trim()[0];
+            //        return value;
+            //    }
 
-                return 0;
-            };
+            //    return 0;
+            //};
 
-            var firstLettersSum = stringList.Sum(getFirstLetterValue);
-            var vowelsAndConsonantsDifference = stringList.Sum(CalculateDifferenceBetweenVowelAndConsonants);
-            var totalSum = stringList.Sum((string item) =>
-            {
-                decimal currentSum = 0;
-                foreach (char ch in item)
-                {
-                    currentSum += ch;
-                }
+            //var firstLettersSum = stringList.Sum(getFirstLetterValue);
+            //var vowelsAndConsonantsDifference = stringList.Sum(CalculateDifferenceBetweenVowelAndConsonants);
+            //var totalSum = stringList.Sum((string item) =>
+            //{
+            //    decimal currentSum = 0;
+            //    foreach (char ch in item)
+            //    {
+            //        currentSum += ch;
+            //    }
 
-                return currentSum;
-            });
+            //    return currentSum;
+            //});
 
-            var countLetters = (string item) => (double)item.Length;
+            //var countLetters = (string item) => (double)item.Length;
 
-            var averageLettersCount = stringList.Average(countLetters);
-            var averageVowels = stringList.Average(CalculateAverageVowels);
+            //var averageLettersCount = stringList.Average(countLetters);
+            //var averageVowels = stringList.Average(CalculateAverageVowels);
 
-            Console.WriteLine(averageLettersCount);
-            Console.WriteLine(averageVowels);
+            //Console.WriteLine(averageLettersCount);
+            //Console.WriteLine(averageVowels);
 
-            var displayNonEmptyString = (string item) =>
-            {
-                if (item.Trim().Length > 0)
-                {
-                    Console.WriteLine(item);
-                }
-            };
+            //var displayNonEmptyString = (string item) =>
+            //{
+            //    if (item.Trim().Length > 0)
+            //    {
+            //        Console.WriteLine(item);
+            //    }
+            //};
 
-            stringList.Foreach(DisplayAllUppercase);
-            stringList.Foreach(displayNonEmptyString);
+            //stringList.Foreach(DisplayAllUppercase);
+            //stringList.Foreach(displayNonEmptyString);
 
-            var countStringWithMoreThanThreeLetters = stringList.Count(HasMoreTanThreeLetters);
-            var countStringEndingWithVowels = (string item) =>
-            {
-                if (item.Trim().Length > 0)
-                {
-                    char lastChar = item.Trim()[item.Trim().Length - 1];
-                    if (lastChar == 'a' || lastChar == 'e' || lastChar == 'i' ||
-                        lastChar == 'o' || lastChar == 'u' || lastChar == 'y')
-                    {
-                        return true;
-                    }
-                }
+            //var countStringWithMoreThanThreeLetters = stringList.Count(HasMoreTanThreeLetters);
+            //var countStringEndingWithVowels = (string item) =>
+            //{
+            //    if (item.Trim().Length > 0)
+            //    {
+            //        char lastChar = item.Trim()[item.Trim().Length - 1];
+            //        if (lastChar == 'a' || lastChar == 'e' || lastChar == 'i' ||
+            //            lastChar == 'o' || lastChar == 'u' || lastChar == 'y')
+            //        {
+            //            return true;
+            //        }
+            //    }
 
-                return false;
-            };
+            //    return false;
+            //};
 
-            Console.WriteLine(countStringWithMoreThanThreeLetters);
+            //Console.WriteLine(countStringWithMoreThanThreeLetters);
             // Console.WriteLine(stringList.Count(countStringEndingWithVowels));
 
             #endregion

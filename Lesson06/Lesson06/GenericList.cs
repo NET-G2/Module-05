@@ -1,41 +1,42 @@
 ﻿namespace Lesson06
 {
-    class CustomStringList
+    class GenericList<T> where T : IRunnable
     {
-        private readonly List<string> strings;
+        private readonly List<T> elements;
 
-        public CustomStringList(List<string> strings)
+        public GenericList(List<T> elements)
         {
-            this.strings = strings;
+            this.elements = elements;
         }
 
-        public decimal Sum(Func<string, decimal> func)
+        public decimal Sum(Func<T, decimal> func)
         {
             decimal totalSum = 0;
 
-            foreach (string item in strings)
+            foreach (T item in elements)
             {
+                item.Run();
                 totalSum += func(item);
             }
 
             return totalSum;
         }
 
-        public double Average(Func<string, double> func)
+        public double Average(Func<T, double> func)
         {
             double totalSum = 0;
 
-            foreach (string item in strings)
+            foreach (T item in elements)
             {
                 totalSum += func(item);
             }
 
-            return totalSum / strings.Count;
+            return totalSum / elements.Count;
         }
 
-        public void Foreach(Action<string> action)
+        public void Foreach(Action<T> action)
         {
-            foreach (string item in strings)
+            foreach (T item in elements)
             {
                 action(item);
             }
@@ -43,11 +44,11 @@
             Console.WriteLine();
         }
 
-        public int Count(Predicate<string> predicate)
+        public int Count(Predicate<T> predicate)
         {
             int count = 0;
 
-            foreach (var item in strings)
+            foreach (T item in elements)
             {
                 if (predicate(item))
                 {

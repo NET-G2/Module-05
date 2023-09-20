@@ -137,6 +137,21 @@
 
             #endregion
 
+            #region Query
+
+            //var peopleQuery = from p in people
+            //                  where p.Age > 18
+            //                  orderby p.Age descending
+            //                  select new { p.Name, p.Age };
+            //var subQuery = from p in people
+            //               where p.Age > (from p1 in people
+            //                              join c in companies
+            //                              on p1.CompanyId equals c.Id
+            //                              where c.Name.Contains("1"));
+            //               select p;
+
+            #endregion
+
         }
     }
 }
