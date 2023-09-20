@@ -6,27 +6,6 @@ namespace Lesson06
     {
         static void Main(string[] args)
         {
-
-            #region Extenion methods Sampels
-
-            //List<string> list = new List<string>();
-            //Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            //HashSet<string> hashSet = new HashSet<string>();
-            //Queue<string> queue = new Queue<string>();
-            //Stack<string> stack = new Stack<string>();
-
-            //CustomList customList = new CustomList(
-            //    new string[] { "one", "two", "three" });
-
-            //customList.DisplayAll();
-
-            //int a = 4;
-
-            //Console.WriteLine(a.IsEven());
-            //Console.WriteLine(a.IsOdd());
-
-            #endregion
-
             List<string> strings = new List<string>();
             strings.Add("one");
             strings.Add("two");
@@ -41,18 +20,22 @@ namespace Lesson06
             numbers.Add(4);
             numbers.Add(5);
 
+            // Delegate for even/odd check
+            Func<int, bool> isEven = (int a) => a % 2 == 0;
+            Func<int, bool> isOdd = (int a) => a % 2 != 0;
+
             #region Anonymous methods
 
-            var printHello = () => Console.WriteLine();
+            var printHello = new Action(() => Console.WriteLine("Hello"));
             printHello();
 
-            var printMessage = (string message) => Console.WriteLine(message);
+            var printMessage = new Action<string>((string message) => Console.WriteLine(message));
             printMessage("Hello, World!");
 
-            var getSum = (int a, int b) => (a + b).ToString();
-            printMessage(getSum(1, 2));
+            var getSum = new Func<int, int, string>((int a, int b) => (a + b).ToString());
+            Console.WriteLine(getSum(1, 2));
 
-            var calculateTotal = (int[] array) =>
+            var calculateTotal = new Func<int[], int>((int[] array) =>
             {
                 int sum = 0;
                 foreach (var item in array)
@@ -64,8 +47,8 @@ namespace Lesson06
                 Console.WriteLine();
 
                 return sum;
-            };
-            printMessage(calculateTotal(new int[] { 1, 2, 3, 4, 5 }).ToString());
+            });
+            Console.WriteLine(calculateTotal(new int[] { 1, 2, 3, 4, 5 }));
 
             #endregion
 
@@ -78,7 +61,7 @@ namespace Lesson06
 
             #region Any
 
-            var containsLetterA = (string item) =>
+            Func<string, bool> containsLetterA = (string item) =>
             {
                 foreach (var letter in item)
                 {
@@ -91,7 +74,7 @@ namespace Lesson06
                 return false;
             };
 
-            var isOne = (string item) => item == "one";
+            Func<string, bool> isOne = (string item) => item == "one";
 
             Console.WriteLine(strings.Any(isOne));
             Console.WriteLine();
@@ -138,10 +121,10 @@ namespace Lesson06
             CustomStringList stringList = new CustomStringList(strings);
             Console.WriteLine($"Custom string method: {stringList.Sum()}");
 
-            var hasMoreVowels = (string item) =>
+            Func<string, bool> hasMoreVowels = (string item) =>
             {
                 int vowelsCount = 0;
-                int consolantsCount = 0;
+                int consonantsCount = 0;
 
                 foreach (var ch in item)
                 {
@@ -151,11 +134,11 @@ namespace Lesson06
                     }
                     else
                     {
-                        consolantsCount++;
+                        consonantsCount++;
                     }
                 }
 
-                return vowelsCount > consolantsCount;
+                return vowelsCount > consonantsCount;
             };
 
             Console.WriteLine(stringList.Any(hasMoreVowels));
@@ -207,7 +190,7 @@ namespace Lesson06
 
         public void Reset()
         {
-            _currentIndex = 0;
+            _currentIndex = -1;
         }
     }
 
@@ -230,6 +213,18 @@ namespace Lesson06
             }
 
             return totalSum;
+        }
+
+        public bool Any(Func<string, bool> predicate)
+        {
+            foreach (var item in strings)
+            {
+                if (predicate(item))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public decimal Sum()
