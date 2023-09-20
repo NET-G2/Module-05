@@ -23,7 +23,7 @@
                    VerticalAlignment="Top"
                    FontSize="20"
                    FontWeight="Black"
-                   Foreground="White"
+                   Foreground="Black"
                    Text="Lesson 5" />
 
         <StackPanel Grid.Row="1"
