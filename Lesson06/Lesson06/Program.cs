@@ -6,248 +6,254 @@ namespace Lesson06
     {
         static void Main(string[] args)
         {
-
-            #region Extenion methods Sampels
-
-            //List<string> list = new List<string>();
-            //Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            //HashSet<string> hashSet = new HashSet<string>();
-            //Queue<string> queue = new Queue<string>();
-            //Stack<string> stack = new Stack<string>();
-
-            //CustomList customList = new CustomList(
-            //    new string[] { "one", "two", "three" });
-
-            //customList.DisplayAll();
-
-            //int a = 4;
-
-            //Console.WriteLine(a.IsEven());
-            //Console.WriteLine(a.IsOdd());
-
-            #endregion
-
             List<string> strings = new List<string>();
             strings.Add("one");
             strings.Add("two");
             strings.Add("three");
             strings.Add("four");
             strings.Add("five");
+            strings.Add("wrtz");
+            strings.Add("ieya");
 
-            List<int> numbers = new List<int>();
-            numbers.Add(1);
-            numbers.Add(2);
-            numbers.Add(3);
-            numbers.Add(4);
-            numbers.Add(5);
+            StringList lists = new StringList(strings);
 
-            #region Anonymous methods
+            #region Sum
 
-            var printHello = () => Console.WriteLine();
-            printHello();
+            // Task 1 : Barcha elementlarni bir-biriga qo'shish. 
 
-            var printMessage = (string message) => Console.WriteLine(message);
-            printMessage("Hello, World!");
 
-            var getSum = (int a, int b) => (a + b).ToString();
-            printMessage(getSum(1, 2));
+            //var result = lists.Sum(str =>
+            //{
+            //    decimal currentSum = 0;
+            //    foreach (char ch in str)
+            //    {
+            //        currentSum += ch;
+            //    }
 
-            var calculateTotal = (int[] array) =>
-            {
-                int sum = 0;
-                foreach (var item in array)
-                {
-                    Console.Write(item + " + ");
-                    sum += item;
-                }
+            //    return currentSum;
+            //});
 
-                Console.WriteLine();
 
-                return sum;
-            };
-            printMessage(calculateTotal(new int[] { 1, 2, 3, 4, 5 }).ToString());
+            // Task 2 : Sonlarni tarjima qilib qo'shish. 
+
+            //var result = lists.Sum(str =>
+            //{
+            //    if (str.Trim().ToLower() == "one") return (decimal)1;
+            //    if (str.Trim().ToLower() == "two") return (decimal)2;
+            //    if (str.Trim().ToLower() == "three") return (decimal)3;
+            //    if (str.Trim().ToLower() == "four") return (decimal)4;
+            //    if (str.Trim().ToLower() == "five") return (decimal)5;
+            //    if (str.Trim().ToLower() == "six") return (decimal)6;
+            //    if (str.Trim().ToLower() == "seven") return (decimal)7;
+            //    if (str.Trim().ToLower() == "eight") return (decimal)8;
+            //    if (str.Trim().ToLower() == "nine") return (decimal)9;
+            //    if (str.Trim().ToLower() == "zero") return (decimal)0;
+
+            //    return (decimal)0;
+            //});
+
+
+            //Task 3 : Unli xarflarni qo'shish. 
+
+            //var result = lists.Sum(str =>
+            //{
+            //    decimal totalVowels = 0;
+
+            //    foreach (char ch in str.ToLower())
+            //    {
+            //        if(ch == 'a' || ch == 'e' || ch == 'i'
+            //        || ch == 'o' || ch == 'u' || ch == 'y')
+            //        {
+            //            totalVowels += ch;
+            //        }
+            //    }
+
+            //    return totalVowels;
+            //});
+
+
+            //Console.WriteLine(result);
+            #endregion
+
+            #region Average
+
+            // Task 1 :  Barcha xarflarni ASCII tabledan olib o'rta qiymatini xisoblash.
+
+            //var result = lists.Average(str =>
+            //{
+            //    double totalLatters = 0;
+
+            //    foreach(var item in str.Trim())
+            //    {
+            //        totalLatters += item;
+            //    }
+
+            //    return totalLatters;
+            //});
+
+            // Task 2 : Unli xarflarni ASCII tabledan olib o'rta qiymatini xisoblash. 
+
+            //var result = lists.Average(str =>
+            //{
+            //    double totalVowels = 0;
+            //    int counter = 0;
+
+            //    foreach (char ch in str.ToLower())
+            //    {
+            //        if (ch == 'a' || ch == 'e' || ch == 'i'
+            //        || ch == 'o' || ch == 'u' || ch == 'y')
+            //        {
+            //            totalVowels += ch;
+            //            counter++;
+            //        }
+            //    }
+
+            //    Console.WriteLine($" {str} = {totalVowels / counter}");
+
+            //    return totalVowels / counter;
+            //});
+
+            // Task 3 : Undosh xarflarni ASCII tabledan olib o'rta qiymatini xisoblash. 
+
+            //var result = lists.Average(str =>
+            //{
+            //    double totalConsonant = 0;
+            //    int counter = 0;
+
+            //    foreach (char ch in str.ToLower())
+            //    {
+            //        if (!(ch == 'a' || ch == 'e' || ch == 'i'
+            //        || ch == 'o' || ch == 'u' || ch == 'y'))
+            //        {
+            //            totalConsonant += ch;
+            //            counter++;
+            //        }
+            //    }
+
+            //    Console.WriteLine($" {str} = {totalConsonant / counter}");
+
+            //    return totalConsonant / counter;
+            //});
+
+            //Console.WriteLine($"Total result = {result}");
 
             #endregion
 
-            #region Contains
+            #region All
 
-            Console.WriteLine(strings.Contains("one"));
-            Console.WriteLine(numbers.Contains(6));
+            // Task 1 : Barcha xarflar unli ekanini tekshirish. 
+
+            //var result = lists.All(str =>
+            //{
+            //    foreach (char item in str)
+            //    {
+            //        if (!(item == 'a' || item == 'e' || item == 'i'
+            //        || item == 'o' || item == 'u' || item == 'y')) return false;
+            //    }
+
+            //    return true;
+            //});
+
+            // Task 2 : Barcha xarflar undosh ekanini tekshirish. 
+
+            //var result = lists.All(str =>
+            //{
+            //    foreach (char item in str)
+            //    {
+            //        if (item == 'a' || item == 'e' || item == 'i'
+            //        || item == 'o' || item == 'u' || item == 'y') return false;
+            //    }
+
+            //    return true;
+            //});
+
+            // Task 3 : Bittayam so'zda 'a' xarfi ishlatilmaganini tekshirish.
+
+            //var result = lists.All(str =>
+            //{
+            //    foreach (char item in str.Trim().ToLower())
+            //    {
+            //        if (item == 'a') return false;
+            //    }
+
+            //    return true;
+            //});
+
+            //Console.WriteLine(result);
 
             #endregion
 
             #region Any
 
-            var containsLetterA = (string item) =>
-            {
-                foreach (var letter in item)
-                {
-                    if (letter == 'a')
-                    {
-                        return true;
-                    }
-                }
+            // Task : Barcha elementlar ichida xech bo'lmaganda 1 tasida
+            // 'v' harfi borligini tekshirish. 
 
-                return false;
-            };
+            //var result = lists.Any(str =>
+            //{
+            //    foreach (char item in str)
+            //    {
+            //        if (item == 'v') return true;
+            //    }
 
-            var isOne = (string item) => item == "one";
+            //    return false;
+            //});
 
-            Console.WriteLine(strings.Any(isOne));
-            Console.WriteLine();
-            Console.WriteLine(strings.Sum(item =>
-            {
-                decimal currentSum = 0;
-                foreach (char ch in item)
-                {
-                    currentSum += ch;
-                }
-
-                Console.WriteLine(currentSum);
-
-                return currentSum;
-            }));
-
-            Console.WriteLine(strings.Sum(item =>
-            {
-                int totalSum = 0;
-                if (item == "one")
-                {
-                    totalSum += 1;
-                }
-                else if (item == "two")
-                {
-                    totalSum += 2;
-                }
-                else if (item == "three")
-                {
-                    totalSum += 3;
-                }
-                else if (item == "four")
-                {
-                    totalSum += 4;
-                }
-                else if (item == "five")
-                {
-                    totalSum += 5;
-                }
-
-                return totalSum;
-            }));
-
-            CustomStringList stringList = new CustomStringList(strings);
-            Console.WriteLine($"Custom string method: {stringList.Sum()}");
-
-            var hasMoreVowels = (string item) =>
-            {
-                int vowelsCount = 0;
-                int consolantsCount = 0;
-
-                foreach (var ch in item)
-                {
-                    if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
-                    {
-                        vowelsCount++;
-                    }
-                    else
-                    {
-                        consolantsCount++;
-                    }
-                }
-
-                return vowelsCount > consolantsCount;
-            };
-
-            Console.WriteLine(stringList.Any(hasMoreVowels));
+            //Console.WriteLine(result);
 
             #endregion
-        }
-    }
 
-    class CustomList : IEnumerable
-    {
-        private readonly CustomEnumerator _enumerator;
+            #region ForEach
+            // Task : Berilgan elementlarni har birini bosh harfini katta harfga o'zgartirish.
 
-        public CustomList(string[] items)
-        {
-            _enumerator = new CustomEnumerator(items);
-        }
+            //lists.ForEach(str => Console.WriteLine(str.Replace(str[0], str.ToUpper()[0])));
 
-        public IEnumerator GetEnumerator()
-        {
-            return _enumerator;
-        }
-    }
+            #endregion
 
-    class CustomEnumerator : IEnumerator
-    {
-        private readonly string[] _items;
-        private readonly int _count;
-        private int _currentIndex;
+            #region First
+            // Task : Harflar soni 3 tadan ko'p bo'lgan 1-so'zni topish.
 
-        public CustomEnumerator(string[] items)
-        {
-            _items = items;
-            _count = items.Length;
-            _currentIndex = -1;
-        }
+            //var res = lists.First(str => str.Length > 3);
+            //Console.WriteLine(res);
+            #endregion
 
-        public object Current => _items[_currentIndex];
+            #region Containst
 
-        public bool MoveNext()
-        {
-            if (_currentIndex < _count - 1)
-            {
-                _currentIndex++;
-                return true;
-            }
+            // Task : Elementlar orasida belgilar soni juft ekanligini tekshirish.
 
-            return false;
-        }
+            //var result = lists.Cointains(str =>
+            //{
+            //    if (str.Length % 2 == 0) return true;
+            //    return false;
+            //});
 
-        public void Reset()
-        {
-            _currentIndex = 0;
-        }
-    }
+            //Console.WriteLine(result);
 
-    class CustomStringList
-    {
-        private readonly List<string> strings;
+            #endregion
 
-        public CustomStringList(List<string> strings)
-        {
-            this.strings = strings;
-        }
+            #region
 
-        public decimal Sum(Func<string, decimal> func)
-        {
-            decimal totalSum = 0;
+            // Task : Elementlar orasidan har bir elementdagi unli harflar soni undosh
+            // harflar sonidan ko'p yoki teng bo'lgan elementlar sonini toping ;
 
-            foreach (var item in strings)
-            {
-                totalSum += func(item);
-            }
+            //var result = lists.Count(str =>
+            //{
+            //    int countVowels = 0;
+            //    int countConsonants = 0;
 
-            return totalSum;
-        }
+            //    foreach (char ch in str.Trim())
+            //    {
+            //        if (ch == 'a' || ch == 'e' || ch == 'i'
+            //            || ch == 'o' || ch == 'u' || ch == 'y') { countVowels++; }
 
-        public decimal Sum()
-        {
-            decimal totalSum = 0;
+            //        else { countConsonants++; }
+            //    }
 
-            foreach (var item in strings)
-            {
-                int currentSum = 0;
-                foreach (var ch in item)
-                {
-                    currentSum += ch;
-                }
+            //    return countVowels >= countConsonants;
+            //});
 
-                totalSum += currentSum;
-            }
+            //Console.WriteLine(result);
 
-            return totalSum;
-        }
-    }
+            #endregion
+        } 
+    } 
 }
