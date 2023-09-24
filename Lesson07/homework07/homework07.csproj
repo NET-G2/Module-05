@@ -43,10 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\DataAccesLayer\DAL.cs" />
+    <Compile Include="DataAccesLayer\DAL.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\SalaryGrade.cs" />
+    <Compile Include="Module\DepartmentModule.cs" />
+    <Compile Include="Module\EmployeeModule.cs" />
+    <Compile Include="Module\SalaryGradeModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
