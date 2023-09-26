@@ -14,12 +14,12 @@ namespace homework07.Models
         public int? ManagerId { get; set; }
         public DateTime HireDate { get; set; }
         public decimal Salary { get; set; }
-        public double? Commition { get; set; }
-        public int DepartmentId { get; set; }
+        public decimal? Commition { get; set; }
+        public int? DepartmentId { get; set; }
 
         public Employee() { }
 
-        public Employee(int employeeId, string employeeName, string jobName, int managerId, DateTime hireDate, decimal salary, double commition, int departmentId)
+        public Employee(int employeeId, string employeeName, string jobName, int? managerId, DateTime hireDate, decimal salary, decimal? commition, int departmentId)
         {
             EmployeeId = employeeId;
             EmployeeName = employeeName;

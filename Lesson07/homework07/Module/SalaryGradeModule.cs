@@ -36,13 +36,13 @@ namespace homework07.Module
             catch (SqlException ex)
             {
                 Console.WriteLine($"Database error: {ex.Message}.", "Error executing query.");
+                result = new List<SalaryGrade>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                result = new List<SalaryGrade>();
             }
-
-            result = new List<SalaryGrade>();
         }
 
         private List<SalaryGrade> ReaderToSalaryGradeList(SqlDataReader reader)
