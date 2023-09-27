@@ -31,12 +31,20 @@
             Click="Button_Click"
             Content="Add Employee"
             Foreground="Black" />
+
         <DataGrid
             x:Name="employeesDataGrid"
             Grid.Row="1"
             Margin="50"
             HorizontalAlignment="Stretch"
-            MouseDoubleClick="employeesDataGrid_MouseDoubleClick" />
+            MouseDoubleClick="employeesDataGrid_MouseDoubleClick">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Click="MenuItem_Click" Header="Click Me" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
         <Button
             Grid.Row="2"
             Width="150"

@@ -52,5 +52,10 @@ namespace Lesson09
                 }
             }
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
