@@ -124,10 +124,10 @@ namespace Lesson08.Services
                     employee.Empno = (int)reader.GetDecimal(0);
                     employee.Ename = reader.GetString(1);
                     employee.Job = reader.GetString(2);
-                    employee.Mgr = reader.IsDBNull(3) ? null : (int)reader.GetDecimal(3);
+                    employee.Mgr = reader.IsDBNull(3) ? (int?)null : (int?)reader.GetDecimal(3);
                     employee.Hiredate = reader.GetDateTime(4);
                     employee.Sal = reader.GetDecimal(5);
-                    employee.Comm = reader.IsDBNull(6) ? null : reader.GetDecimal(6);
+                    employee.Comm = reader.IsDBNull(6) ? (decimal?)null : (decimal?)reader.GetDecimal(6);
                     employee.Deptno = (int)reader.GetDecimal(7);
 
                     result.Add(employee);

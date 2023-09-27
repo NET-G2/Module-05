@@ -9,7 +9,7 @@ namespace Lesson08
 {
     internal class DataAccessLayer : IDisposable
     {
-        public const string Connection_String = "Data Source=MIRAZIZ\\DEVSQL;Initial Catalog=EmpDept;Integrated Security=True";
+        public const string Connection_String = "Data Source=LAPTOP-TEN57IC2\\MSSQLSERVER01;Initial Catalog=Company_2;Integrated Security=True";
 
         private readonly SqlConnection _connection;
 
