@@ -180,18 +180,18 @@ namespace homework07
 
             // Show all jobs with the average salary not less than 3000.
 
-            //var result = employees.GroupBy(e => e.JobName)
-            //    .Where(eg => eg.Average(x => x.Salary) >= 3000)
-            //    .Select(e => new
-            //    {
-            //        jobName = e.Key,
-            //        avgSal = e.Average(e2 => e2.Salary)
-            //    });
+            var result = employees.GroupBy(e => e.JobName)
+                .Where(eg => eg.Average(e => e.Salary) >= 3000)
+                .Select(e => new
+                {
+                    jobName = e.Key,
+                    avgSal = e.Average(e2 => e2.Salary)
+                });
 
-            //foreach(var emp in result)
-            //{
-            //    Console.WriteLine($" {emp.jobName} -> {emp.avgSal.ToString("N3")}");
-            //}
+            foreach (var emp in result)
+            {
+                Console.WriteLine($" {emp.jobName} -> {emp.avgSal.ToString("N3")}");
+            }
 
             #endregion
 
@@ -230,6 +230,55 @@ namespace homework07
             //var result = employees.Max(e => e.Salary) - employees.Min(e => e.Salary);
 
             //Console.WriteLine("MaxSalary - MinSalary = " + result);
+
+            #endregion
+
+            #region Task 11
+
+            // Find department employing more than 3 people.
+
+            //var result = employees.Join(departments,
+            //    e => e.DepartmentId,
+            //    d => d.DepartmentId,
+            //    (e, d) => new
+            //    {
+            //        Department = d,
+            //        Employee = e
+            //    }).GroupBy(ed => ed.Department.DepartmentName)
+            //    .Where(ed => ed.Count() >= 3)
+            //    .Select(e => new
+            //    {
+            //        dName = e.Key,
+            //        employeeCount = e.Count()
+            //    });
+
+            //foreach(var emp in result)
+            //{
+            //    Console.WriteLine($" {emp.dName} --> {emp.employeeCount} ;");
+            //}
+
+            #endregion
+
+            #region Task 12
+
+            // Check if all personal numbers are unique.
+
+            //var result = employees.Distinct();
+
+            //foreach(var employee in result)
+            //{
+            //    Console.WriteLine($" {employee.EmployeeId} --> {employee.EmployeeName}");
+            //}
+
+            #endregion
+
+            #region Task 13
+
+            // Find the lowest salary paid to employees working under each manager.
+            // Eliminate groupswith minimal salary below 1000.
+            // Present data by increasing values of salary.
+
+
 
             #endregion
         }
