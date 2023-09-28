@@ -112,6 +112,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyDbContext.cs" />
+    <Compile Include="Models\EMP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
