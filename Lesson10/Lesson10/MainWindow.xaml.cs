@@ -16,17 +16,74 @@ namespace Lesson10
     public partial class MainWindow : Window
     {
         private readonly SupermarketDbContext _context;
-        private ObservableCollection<Product> products;
+        public ObservableCollection<Product> Products { get; private set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
             _context = new SupermarketDbContext();
-            products = new ObservableCollection<Product>();
-            productsDataGrid.ItemsSource = products;
+            Products = new ObservableCollection<Product>();
+            productsDataGrid.ItemsSource = Products;
+        }
 
-            LoadData().Wait();
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Task.Run(async () => await LoadData());
+        }
+
+        private async void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key != System.Windows.Input.Key.Enter)
+            {
+                return;
+            }
+
+            List<Product> searchResult = null;
+
+            if (string.IsNullOrEmpty(searchBox.Text))
+            {
+                searchResult = await GetAllProducts();
+            }
+            else
+            {
+                searchResult = await SearchProducts(searchBox.Text);
+            }
+
+            Products = new ObservableCollection<Product>(searchResult);
+        }
+
+        private void CategoriesCombobox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            List<Product> filteredProducts = null;
+            var selectedCategory = ((Category)categoriesCombobox.SelectedItem);
+
+            using (var context = new SupermarketDbContext())
+            {
+                if (selectedCategory == null)
+                {
+                    filteredProducts = context.Products
+                        .Include(nameof(Product.Category))
+                        .ToList();
+                }
+                else
+                {
+                    filteredProducts = context.Products
+                        .Include(nameof(Product.Category))
+                        .Where(x => x.CategoryId == selectedCategory.Id)
+                        .ToList();
+                }
+
+                productsCount.Text = $"Products ({filteredProducts.Count})";
+
+                productsDataGrid.ItemsSource = null;
+                productsDataGrid.ItemsSource = filteredProducts;
+            }
+        }
+
+        private void ClearCombobox_Clicked(object sender, RoutedEventArgs e)
+        {
+            categoriesCombobox.SelectedItem = null;
         }
 
         private async Task LoadData()
@@ -37,14 +94,23 @@ namespace Lesson10
                     .Include(nameof(Product.Category))
                     .ToListAsync();
 
-                productsCount.Text = $"Products ({loadedProducts.Count})";
-
-                products = new ObservableCollection<Product>(loadedProducts);
+                Dispatcher.Invoke(() =>
+                {
+                    productsCount.Text = $"Products ({loadedProducts.Count})";
+                    Products.Clear();
+                    foreach (var product in loadedProducts)
+                    {
+                        Products.Add(product);
+                    }
+                });
 
                 var loadedCategories = await dbContext.Categories
                     .ToListAsync();
 
-                categoriesCombobox.ItemsSource = loadedCategories;
+                Dispatcher.Invoke(() =>
+                {
+                    categoriesCombobox.ItemsSource = loadedCategories;
+                });
             }
         }
 
@@ -111,64 +177,6 @@ namespace Lesson10
             }
 
             return categories[randomIndex].Id;
-        }
-
-        private async void SearchBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key != System.Windows.Input.Key.Enter)
-            {
-                return;
-            }
-
-            List<Product> searchResult = null;
-
-            if (string.IsNullOrEmpty(searchBox.Text))
-            {
-                searchResult = await GetAllProducts();
-            }
-            else
-            {
-                searchResult = await SearchProducts(searchBox.Text);
-            }
-
-            products = new ObservableCollection<Product>(searchResult);
-        }
-
-        private void CategoriesCombobox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            List<Product> filteredProducts = null;
-            var selectedCategory = ((Category)categoriesCombobox.SelectedItem);
-
-            using (var context = new SupermarketDbContext())
-            {
-                if (selectedCategory == null)
-                {
-                    filteredProducts = context.Products
-                        .Include(nameof(Product.Category))
-                        .ToList();
-                }
-                else
-                {
-                    filteredProducts = context.Products
-                        .Include(nameof(Product.Category))
-                        .Where(x => x.CategoryId == selectedCategory.Id)
-                        .ToList();
-                }
-
-                productsCount.Text = $"Products ({filteredProducts.Count})";
-
-                productsDataGrid.ItemsSource = null;
-                productsDataGrid.ItemsSource = filteredProducts;
-            }
-        }
-
-        private void ClearCombobox_Clicked(object sender, RoutedEventArgs e)
-        {
-            categoriesCombobox.SelectedItem = null;
-        }
-
-        private async void Window_Loaded(object sender, RoutedEventArgs e)
-        {
         }
 
         private async Task<List<Product>> SearchProducts(string searchText) =>
