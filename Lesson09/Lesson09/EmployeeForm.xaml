@@ -1,0 +1,96 @@
+﻿<Window
+    x:Class="Lesson09.EmployeeForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Lesson09"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Employee Form"
+    Width="800"
+    Height="450"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <StackPanel Margin="25" HorizontalAlignment="Center">
+        <TextBlock
+            Margin="15"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Text="Employee" />
+
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock FontSize="14" Text="Employee number" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Text="Employee name" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Text="Manager" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Text="Position" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Text="Hiredate" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Text="Salary" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Text="Commision" />
+                <TextBlock
+                    Margin="0,10,0,0"
+                    FontSize="14"
+                    Text="Department" />
+            </StackPanel>
+            <StackPanel>
+                <TextBox Name="empno" Width="200" />
+                <TextBox
+                    Name="eName"
+                    Width="200"
+                    Margin="0,10,0,0" />
+                <ComboBox
+                    x:Name="managers"
+                    Width="200"
+                    Margin="0,10,0,0"
+                    DisplayMemberPath="DisplayValue"
+                    SelectedValuePath="Empno" />
+                <TextBox
+                    Name="job"
+                    Width="200"
+                    Margin="0,10,0,0" />
+                <DatePicker
+                    Name="hiredate"
+                    Width="200"
+                    Margin="0,10,0,0" />
+                <TextBox
+                    Name="sal"
+                    Width="200"
+                    Margin="0,10,0,0" />
+                <TextBox
+                    Name="comm"
+                    Width="200"
+                    Margin="0,10,0,0" />
+                <ComboBox
+                    x:Name="departments"
+                    Width="200"
+                    Margin="0,10,0,0" />
+            </StackPanel>
+        </StackPanel>
+        <Button
+            x:Name="save"
+            Width="150"
+            Margin="25"
+            HorizontalAlignment="Center"
+            Background="LightSeaGreen"
+            Click="save_Click"
+            Content="Save" />
+    </StackPanel>
+</Window>
