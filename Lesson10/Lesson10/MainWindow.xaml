@@ -33,7 +33,7 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
                    FontSize="25"
-                   Foreground="DarkSlateGray"
+                   Foreground="DarkGoldenrod"
                    Text="Fresh market" />
         <TextBlock x:Name="productsCount"
                    Grid.Row="1"
