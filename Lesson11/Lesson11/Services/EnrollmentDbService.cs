@@ -30,5 +30,14 @@ namespace Lesson11.Services
                 .Where(x => x.EndDate > DateTime.Now)
                 .ToList();
         }
+
+        public Enrollment CreateEnrollment(Enrollment enrollment)
+        {
+            var createdEnrollment = _context.Enrollments.Add(enrollment);
+
+            _context.SaveChanges();
+
+            return createdEnrollment;
+        }
     }
 }

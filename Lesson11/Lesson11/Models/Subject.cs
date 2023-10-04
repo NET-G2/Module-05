@@ -22,5 +22,10 @@ namespace Lesson11.Models
         public int NumberOfHours { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

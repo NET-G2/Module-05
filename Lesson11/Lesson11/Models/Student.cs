@@ -21,5 +21,10 @@ namespace Lesson11.Models
         public string Email { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id {Id}, Name {FullName}";
+        }
     }
 }
