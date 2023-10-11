@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\DELL\Desktop\Modul_5\Lesson09\Lesson09\DAL\CompanyContext.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\DELL\Desktop\Modul_5\Lesson09\WpfApp1\DAL\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
