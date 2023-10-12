@@ -60,7 +60,7 @@ namespace SalesManagement.Infrastructure.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                "Data Source=MIRAZIZ\\SQLEXPRESS;Initial Catalog=SalesManagement;Integrated Security=True");
+                "Data Source=AXRORBEK\\SQLEXPRESS;Initial Catalog=salesManagment;Integrated Security=True");
             base.OnConfiguring(optionsBuilder);
         }
     }
