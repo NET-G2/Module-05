@@ -7,13 +7,13 @@ namespace Lesson11.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Update_Key : IMigrationMetadata
+    public sealed partial class Added : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update_Key));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Added));
         
         string IMigrationMetadata.Id
         {
-            get { return "202310040945249_Update_Key"; }
+            get { return "202310061416434_Added"; }
         }
         
         string IMigrationMetadata.Source

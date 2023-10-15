@@ -15,11 +15,16 @@ namespace Lesson11
         private readonly StudentDbService _studentsService;
         private readonly SubjectsDbService _subjectsService;
         private ObservableCollection<Enrollment> _enrollments;
+        private ObservableCollection<Student> _students;
+        private ObservableCollection<Subject> _subjects;
+
         public MainWindow()
         {
             InitializeComponent();
 
             _enrollments = new ObservableCollection<Enrollment>();
+            _students = new ObservableCollection<Student>();
+            _subjects = new ObservableCollection<Subject>();
             _dbService = new EnrollmentDbService();
             _subjectsService = new SubjectsDbService();
             _studentsService = new StudentDbService();
@@ -27,13 +32,16 @@ namespace Lesson11
             LoadData();
         }
 
-        private void LoadData()
+        public void LoadData()
         {
             _enrollments.Clear();
+            _students.Clear();
+            _subjects.Clear();
             _enrollments = new ObservableCollection<Enrollment>(_dbService.GetActiveEnrollments());
+            _students = new ObservableCollection<Student>(_studentsService.GetStudents());
+            //_subjectsService = new ObservableCollection<Subject>(_subjectsService.GetSubjects());
             enrollmentsDataGrid.ItemsSource = _enrollments;
-
-
+            studentsDataGrid.ItemsSource = _students;
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
@@ -50,6 +58,16 @@ namespace Lesson11
 
                 _enrollments.Insert(0, createdEnrollment);
             }
+        }
+
+        private void enrollmentsDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void studentsDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

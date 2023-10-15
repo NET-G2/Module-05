@@ -7,13 +7,13 @@ namespace Lesson11.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Update_Data_Types : IMigrationMetadata
+    public sealed partial class Createdata : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Update_Data_Types));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Createdata));
         
         string IMigrationMetadata.Id
         {
-            get { return "202310041104102_Update_Data_Types"; }
+            get { return "202310051557289_Create data"; }
         }
         
         string IMigrationMetadata.Source

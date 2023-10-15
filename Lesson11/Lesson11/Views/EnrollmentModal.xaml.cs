@@ -1,6 +1,9 @@
 ﻿using Lesson11.Models;
+using Lesson11.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.Runtime.Remoting.Contexts;
 using System.Windows;
 
 namespace Lesson11.Views
@@ -11,6 +14,8 @@ namespace Lesson11.Views
     public partial class EnrollmentModal : Window
     {
         private Enrollment Enrollment;
+        private EnrollmentDbService EnrollmentDbService;
+
         public EnrollmentModal()
         {
             InitializeComponent();
@@ -26,18 +31,22 @@ namespace Lesson11.Views
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            Enrollment enr = null;
             var result = MessageBox.Show("Do you want to create Enrollment?", "Confirm action", MessageBoxButton.YesNo);
 
             if (result == MessageBoxResult.Yes)
             {
-                Enrollment = new Enrollment()
+               var enrl = new Enrollment()
                 {
                     StudentId = ((Student)studentsCombobox.SelectedItem).Id,
                     SubjectId = ((Subject)subjectsCombobox.SelectedItem).Id,
                     StartDate = startDate.SelectedDate ?? DateTime.Now,
                     EndDate = endDate.SelectedDate ?? DateTime.Now,
                 };
+                enr = enrl;
             }
+
+            EnrollmentDbService.CreateEnrollment(enr);
         }
     }
 }

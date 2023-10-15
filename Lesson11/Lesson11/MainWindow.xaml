@@ -47,7 +47,7 @@
                                 BorderThickness="0"
                                 Click="CreateButton_Click"
                                 Content="{md:PackIcon Kind=Create}" />
-                        <DataGrid x:Name="enrollmentsDataGrid" AutoGenerateColumns="False">
+                        <DataGrid x:Name="enrollmentsDataGrid" AutoGenerateColumns="False" SelectionChanged="enrollmentsDataGrid_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Student.FullName}" Header="Student" />
@@ -60,15 +60,27 @@
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Students">
-                <StackPanel>
-                    <Border Margin="25"
+                <ScrollViewer Height="600" Margin="25">
+                    <StackPanel>
+                        <Border Margin="25"
                             Background="Gray"
                             CornerRadius="15">
-                        <DataGrid x:Name="studentsDataGrid"
-                                  Margin="10"
-                                  AutoGenerateColumns="False" />
-                    </Border>
-                </StackPanel>
+                        </Border>
+                        <DataGrid x:Name="studentsDataGrid"  AutoGenerateColumns="False" SelectionChanged="studentsDataGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+                                <DataGridTextColumn Binding="{Binding Student.FullName}" Header="FullName" />
+                                <DataGridTextColumn Binding="{Binding Student.Age}" Header="Age" />
+                                <DataGridTextColumn Binding="{Binding Student.PhoneNumber}" Header="PhoneNumber" />
+                                <DataGridTextColumn Binding="{Binding Student.EmailAddress}" Header="EamilAddress" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel>
+                            <TextBlock x:Name="students_CountLabel" />
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </ScrollViewer>
             </TabItem>
             <TabItem Header="Subjects">
                 <StackPanel>

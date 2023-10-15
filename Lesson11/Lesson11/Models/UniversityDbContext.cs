@@ -11,7 +11,7 @@ namespace Lesson11.Models
         // If you wish to target a different database and/or database provider, modify the 'UniversityDbContext' 
         // connection string in the application configuration file.
         public UniversityDbContext()
-            : base("Data Source=EPUZTASW0537\\SQLEXPRESS;Initial Catalog=UniversityManagement;Integrated Security=True")
+            : base("Data Source=HP-PAVILION-550;Initial Catalog=University;Integrated Security=True")
         {
         }
 
